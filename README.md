@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 AI-Powered Interactive Study Workspace
 
-## Getting Started
+An advanced, full-stack Next.js application designed to revolutionize digital studying. This platform features an interactive knowledge map, a robust local-first PDF viewer with dynamic annotations, and a native integration with the cutting-edge **Google Gemini 2.5 Flash** AI model for automated semantic quiz generation.
 
-First, run the development server:
+![Study Workspace Demo](./public/icon.svg) <!-- Replace with a real screenshot once deployed! -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   **Interactive Knowledge Map**: A beautifully animated, force-directed graph (built with Framer Motion) that visually maps your subjects, modules, and study materials into an intuitive orbital UI layout.
+*   **Local-First PDF Workspace**: An integrated PDF viewer (`pdfjs-dist`) that loads your textbooks and notes natively inside the browser. It features:
+    *   **Persistent Annotations**: Draw, highlight, erase, and save strokes permanently.
+    *   **IndexedDB Caching**: Files are stored securely offline inside your browser for instant loading—no slow cloud uploads required!
+*   **Genuine AI Quiz Generation (Gemini 2.5 Flash)**: Completely bypasses manual question writing. 
+    *   The Next.js backend securely extracts the text from your loaded PDF using `pdf-parse`.
+    *   It streams the massive text payload to the experimental, ultra-fast **Gemini 2.5 Flash** engine.
+    *   Returns a fully structured, heavily-educational multiple-choice quiz scaled to your requested difficulty level in seconds, complete with detailed explanations for the correct answers.
+*   **Advanced Glassmorphism UI**: Dynamic background animations and a highly polished, responsive component library.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Framework**: Next.js 14 (App Router)
+*   **AI Engine**: `@google/generative-ai` (Gemini 2.5 Flash API)
+*   **Styling**: Pure CSS / Tailwind Architecture
+*   **Animations**: Framer Motion
+*   **PDF Rendering & Parsing**: `react-pdf`, `pdfjs-dist`, `pdf-parse`
+*   **State & Storage**: Zustand (Global UI State), `idb-keyval` (Client-side Document Storage)
 
-## Learn More
+## 🚀 Getting Started Locally
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/study_site_proj.git
+   cd study_site_proj
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Set up your API Key:**
+   To use the AI Quiz Generator, you need a free API key from Google AI Studio.
+   * Go to [Google AI Studio](https://aistudio.google.com/app/apikey) and generate an API key.
+   * Create a new file in the root directory named `.env.local`.
+   * Add the following line to the file:
+     ```env
+     GEMINI_API_KEY="your_api_key_here"
+     ```
 
-## Deploy on Vercel
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Open the app:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser to see the result!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🔒 Security Note
+The `.env.local` file is explicitly ignored in the `.gitignore` configuration to ensure your Gemini API keys are never accidentally uploaded to GitHub.
+
+---
+*Built with Next.js, Framer Motion, and Google Gemini.*
